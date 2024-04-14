@@ -1,0 +1,21 @@
+{
+    "debugBreakpointsState": {
+        "breakpoints": [
+            {
+                "id": 0,
+                "path": "~/passaic_nitrate_app/R/plot_gage_data.R",
+                "line_number": 13,
+                "function_steps": "",
+                "function_name": "plot_gage_data",
+                "state": 2,
+                "editor_state": 2,
+                "editor_line_number": 13,
+                "is_pending_debug_completion": false,
+                "needs_updated_steps": false,
+                "type": 0,
+                "is_package_breakpoint": false,
+                "package_name": ""
+            }
+        ]
+    }
+}

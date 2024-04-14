@@ -1,0 +1,12 @@
+name: passaic_nitrate_app
+title: passaic_nitrate_app
+username: daverosenman
+account: daverosenman
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11727531
+bundleId: 8492752
+url: https://daverosenman.shinyapps.io/passaic_nitrate_app/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
