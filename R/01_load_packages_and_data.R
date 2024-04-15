@@ -57,6 +57,8 @@ discharge_map <- readRDS('data/discharge_map.RDS')
 discharge_params <- readRDS('data/discharge_params.RDS')
 discharge_sections <- fst::read.fst('data/discharge_sections.fst')
 event_details <- readRDS('data/event_details.RDS')
+
+
 flow_frequency_data <- fst::read.fst('data/flow_frequency_data.fst')
 flow_station_summaries <- fst::read.fst('data/flow_station_summaries.fst')
 gage_data <- fst::read.fst('data/gage_data.fst')

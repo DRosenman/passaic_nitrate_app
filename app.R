@@ -366,7 +366,7 @@ ui <- tagList(
 
 
 server <- function(input, output, session) {
-  # the reactive value nitrate_df() returns a version of nitrate_data that filters by the users selected scatter_date_range. This is displayed on the main tab.
+  # the reactive value nitrate_df() returns a version of nitrate_data that filters by the users selected scatter_date_range. 
   nitrate_df <- reactive({
     req(input$scatter_date_range)
     read_nitrate_data(input$scatter_date_range)
@@ -381,9 +381,6 @@ server <- function(input, output, session) {
     req(input$scatter_date_range)
     read_gage_data(input$scatter_date_range)
   })
-
-
-  observe(print(rain_df()))
 
 
   # reactive scatter_plot value: returns the scatter plot based on the date_time range selected by the user, using nitrate_df.
@@ -1088,21 +1085,21 @@ server <- function(input, output, session) {
     sample_data_summary()
   })
 
-  output$nitrate_discharger_loads_1 <- renderPlot({
-    ggplot(data = sample_discharger_flow %>% filter(Date == mdy("06/14/2018"))) +
-      geom_bar(aes(x = `Station Name`, y = Perc), fill = "red", stat = "identity") +
-      ggtitle("Nitrate Load, 06/13-06/14") +
-      ylab("%") +
-      xlab("Discharger")
-  })
-
-  output$nitrate_discharger_loads_2 <- renderPlot({
-    ggplot(data = sample_discharger_flow %>% filter(Date == mdy("06/28/2018"))) +
-      geom_bar(aes(x = `Station Name`, y = Perc), fill = "red", stat = "identity") +
-      ggtitle("Nitrate Load, 06/27-06/28") +
-      ylab("%") +
-      xlab("Discharger")
-  })
+  # output$nitrate_discharger_loads_1 <- renderPlot({
+  #   ggplot(data = sample_discharger_flow %>% filter(Date == mdy("06/14/2018"))) +
+  #     geom_bar(aes(x = `Station Name`, y = Perc), fill = "red", stat = "identity") +
+  #     ggtitle("Nitrate Load, 06/13-06/14") +
+  #     ylab("%") +
+  #     xlab("Discharger")
+  # })
+  # 
+  # output$nitrate_discharger_loads_2 <- renderPlot({
+  #   ggplot(data = sample_discharger_flow %>% filter(Date == mdy("06/28/2018"))) +
+  #     geom_bar(aes(x = `Station Name`, y = Perc), fill = "red", stat = "identity") +
+  #     ggtitle("Nitrate Load, 06/27-06/28") +
+  #     ylab("%") +
+  #     xlab("Discharger")
+  # })
 
   # output$continuous_sampling_plot <- renderPlot({
   #   continuous_sampling_plot(station = as.integer(input$continuous_sampling_station), x = input$continuous_x_parameter,
