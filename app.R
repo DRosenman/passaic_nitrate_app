@@ -11,7 +11,7 @@ ui <- tagList(
         sidebarPanel(
           width = 3,
           h4("Nitrate Data from USGS 01389005:"),
-          h4("Passaic River below Pompton Riv at Two Bridges NJ"),
+          h4("Passaic River below Pompton River at Two Bridges NJ"),
           conditionalPanel(
             "input.main_panel == 'Dataset'",
             downloadButton("download_dataset", label = "Download Dataset")
@@ -239,7 +239,7 @@ ui <- tagList(
               multiple = TRUE,
               options = list(`actions-box` = TRUE)
             ),
-            downloadButton("download_sample_time_series_plot", "Download Plot(s)")
+            downloadButton("download_sample_time_series_plot", "Download Plots")
           ),
           conditionalPanel(
             "input.sampling_main == 'Spatial Analysis' && input.sample_slider_type == 'single'",
@@ -312,7 +312,9 @@ ui <- tagList(
             )
           ),
           conditionalPanel("input.sampling_main == 'Passaic at Two Bridges Nitrate'",
-                           "(USGS - ISCO) Is Difference Between USGS Nitrate measurements and ISCO Sampling measurements")
+                           "(USGS - ISCO) Is Difference Between USGS Nitrate measurements and ISCO Sampling measurements"),
+          conditionalPanel("input.sampling_main == 'Summary Statistics'",
+                           downloadButton("download_sample_data_summary", "Download Data"))
         ),
         mainPanel(
           tabsetPanel(
@@ -881,7 +883,7 @@ server <- function(input, output, session) {
 
   overall_time_series_p <- reactive({
     req(overall_sample_time_series_df())
-    overall_sample_parameter_plot(parameter = input$overall_sample_time_series_parameter, df = overall_sample_time_series_df())
+    overall_sample_parameter_plot2(parameter = input$overall_sample_time_series_parameter, df = overall_sample_time_series_df())
     
   })
   time_series_p <- reactive({
@@ -1080,7 +1082,17 @@ server <- function(input, output, session) {
     sample_nitrate_data %>%
       select(Date, Hour, Event, ISCO, USGS)
   })
-
+  
+  
+  output$download_sample_data_summary <- downloadHandler(
+    filename = function() {
+      "sample_data_summary_statistics.xlsx"
+    },
+    content = function(file) {
+      openxlsx::write.xlsx(sample_data_summary(), file = file)
+    }
+  )
+  
   output$summary_stats <- renderDataTable({
     sample_data_summary()
   })
